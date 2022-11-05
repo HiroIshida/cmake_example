@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.4...3.18)
 project(cmake_example)
 
+set(CMAKE_BUILD_TYPE Debug)
+add_compile_options(-fsanitize=address)
+add_link_options(-fsanitize=address)
+
 add_subdirectory(pybind11)
 pybind11_add_module(cmake_example src/main.cpp)
 

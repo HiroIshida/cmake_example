@@ -7,6 +7,11 @@ int add(int i, int j) {
     return i + j;
 }
 
+enum class Color {
+  red = 1,
+  green = 2,
+};
+
 namespace py = pybind11;
 
 PYBIND11_MODULE(cmake_example, m) {
@@ -22,6 +27,10 @@ PYBIND11_MODULE(cmake_example, m) {
            add
            subtract
     )pbdoc";
+
+    py::enum_<Color>(m, "Color")
+        .value("red", Color::red)
+        .value("green", Color::green);
 
     m.def("add", &add, R"pbdoc(
         Add two numbers
